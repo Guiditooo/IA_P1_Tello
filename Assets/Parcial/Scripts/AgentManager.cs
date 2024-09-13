@@ -10,9 +10,11 @@ public class AgentManager : MonoBehaviour
     [SerializeField] private int initialCaravanCount = 1;
     [SerializeField] private int initialVillagerCount = 2;
 
-    [SerializeField] private float velocity = 10.0f;
+    [SerializeField] private float caravanVelocity = 10.0f;
+    [SerializeField] private float villagerVelocity = 10.0f;
 
     private const int MAX_OBJS_PER_DRAWCALL = 1000;
+    private const float DEFAULT_VELOCITY = 0.1f;
 
     private Mesh caravanMesh;
     private Mesh villagerMesh;
@@ -34,12 +36,12 @@ public class AgentManager : MonoBehaviour
         entities = new List<uint>();
         for (int i = 0; i < initialCaravanCount; i++)
         {
-            CreateCaravan();
+            CreateCaravan(caravanVelocity);
         }
 
         for (int i = 0; i < initialVillagerCount; i++)
         {
-            CreateVillager();
+            CreateVillager(villagerVelocity);
         }
 
         villagerMesh = villagerPrefab.GetComponent<MeshFilter>().sharedMesh;
@@ -82,23 +84,26 @@ public class AgentManager : MonoBehaviour
 
     private void CreateAgent()
     {
+        CreateAgent(DEFAULT_VELOCITY, Random.insideUnitCircle);
+    }
+
+    private void CreateAgent(float velocity, Vector3 newPos = default(Vector3))
+    {
         uint entityID = ECSManager.CreateEntity();
-        Vector2 newPos = Random.insideUnitCircle;
 
         ECSManager.AddComponent<PositionComponent>(entityID, new PositionComponent(newPos.x, newPos.y, 0));
         ECSManager.AddComponent<VelocityComponent>(entityID, new VelocityComponent(velocity, Vector3.right.x, Vector3.right.y, Vector3.right.z));
         entities.Add(entityID);
     }
 
-    public void CreateCaravan()
+    public void CreateCaravan(float velocity = DEFAULT_VELOCITY, Vector3 newPos = default(Vector3))
     {
-        CreateAgent();
+        CreateAgent(velocity, newPos);
         caravanCount++;
     }
-    public void CreateVillager()
+    public void CreateVillager(float velocity = DEFAULT_VELOCITY, Vector3 newPos = default(Vector3))
     {
-
-        CreateAgent();
+        CreateAgent(velocity, newPos);
         villagerCount++;
     }
 
