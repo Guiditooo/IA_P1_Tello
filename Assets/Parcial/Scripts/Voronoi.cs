@@ -6,29 +6,29 @@ namespace FlyEngine
 {
     public class Voronoi
     {
-        private List<Vector2> nodeList; //Reemplazar por node para hacerlo por pesos
+        private List<Vector2Coordinate> nodeList; //Reemplazar por node para hacerlo por pesos
 
         public Voronoi()
         {
-            nodeList = new List<Vector2>();
+            nodeList = new List<Vector2Coordinate>();
         }
 
-        public void AddNode(Vector2 v)
+        public void AddNode(Vector2Coordinate v)
         {
             nodeList.Add(v);
         }
 
-        public void AddNodes(List<Vector2> nodes)
-        {
+        public void AddNodes(List<Vector2Coordinate> nodes)
+        { 
             nodeList.AddRange(nodes);
         }
 
-        public Vector2 GetMostNearbyNode(Vector2 node) //Reemplazar por voronoi
+        public Vector2Coordinate GetMostNearbyNode(Vector2Coordinate node) //Reemplazar por voronoi
         {
             if (nodeList == null || nodeList.Count == 0)
                 throw new ArgumentException("La lista de nodeList no puede estar vacía.");
 
-            Vector2 nearby = nodeList.OrderBy(n => Vector2.Distance(n, node)).First();
+            Vector2Coordinate nearby = nodeList.OrderBy(n => n.DistanceTo(node)).First();
 
             return nearby;
         }
