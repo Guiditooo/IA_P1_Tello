@@ -6,7 +6,7 @@ namespace FlyEngine
     {
         private Dictionary<(int x, int y), NodeType> nodes = new Dictionary<(int x, int y), NodeType>();
 
-        public Grapf(int xCount, int yCount, float nodeSeparation)
+        public Grapf(int xCount, int yCount, float nodeSeparation, float initialX = 0.0f, float initialY = 0.0f)
         {
             for (int i = 0; i < xCount; i++)
             {
@@ -15,7 +15,8 @@ namespace FlyEngine
                     NodeType node = new NodeType();
 
                     // Dependiendo del tipo de coordenada, asigna los valores correspondientes
-                    CoordinateType coordinate = (CoordinateType)System.Activator.CreateInstance(typeof(CoordinateType), i, j, i * nodeSeparation, j * nodeSeparation);
+                    CoordinateType coordinate = (CoordinateType)System.Activator.CreateInstance(
+                        typeof(CoordinateType), i, j, initialX + i * nodeSeparation, initialY + j *+nodeSeparation);
 
                     node.SetCoordinate(coordinate);
 

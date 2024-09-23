@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using FlyEngine;
 
-public class Tile : MonoBehaviour
+public class Tile
 {
-    // Start is called before the first frame update
-    void Start()
+    private TileType tileType;
+    private Vector2Coordinate coord;
+
+    public Tile(TileType tileType, int gridX, int gridY, float screenX, float screenY)
     {
-        
+        this.tileType = tileType;
+        coord.gridPosX = gridX;
+        coord.gridPosY = gridY;
+        coord.x = screenX;
+        coord.y = screenY;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public TileType GetTileType() => tileType;
 }

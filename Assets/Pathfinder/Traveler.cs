@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+//Esta clase no deberia existir en mi proyecto actual.
+//Va a ser reemplazada por la clase Agent.
+//El pathfinding va a ser igual para todos
+
 namespace FlyEngine
 {
     public class Traveler<NodeType, CoordinateType> where NodeType : INode<CoordinateType>, INode, new() where CoordinateType : ICoordinate

@@ -5,8 +5,8 @@ ________________________________________________________________________________
 
 El parcial deberá constar de de una demo jugable estilo RTS 2D con las siguientes características:
 
-- [ ] Crear un mapa de superficie finita con ancho y alto modificable por el usuario antes de su creación.
-- [ ] El mapa debe estar poblado por nodos equidistantes en grilla cuadrada, la distancia entre nodos también debe ser modificable por el usuario antes de la creación del mapa.
+- [x] Crear un mapa de superficie finita con ancho y alto modificable por el usuario antes de su creación.
+- [x] El mapa debe estar poblado por nodos equidistantes en grilla cuadrada, la distancia entre nodos también debe ser modificable por el usuario antes de la creación del mapa.
 - [ ] El mapa cuenta con minas de oro dispersas en nodos aleatorios al momentos de generarse el mapa, la cantidad es modificable por el usuario.
 En un punto del mapa hay un “Centro urbano” que es el encargado de generar dos tipos de agentes, “aldeanos” y “caravanas”.
 - [ ] Al iniciar la simulación, los aldeanos van a recolectar oro a la mina más cercana, extraen uno de oro cada cierta cantidad de tiempo, y cada tres de oro extraído necesitan comer una unidad de comida para poder seguir trabajando.

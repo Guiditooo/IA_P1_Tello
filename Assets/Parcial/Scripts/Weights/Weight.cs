@@ -1,9 +1,7 @@
 namespace FlyEngine
 {
-    using UnityEngine;
-
-    [CreateAssetMenu(fileName = "NewWeights", menuName = "Weights", order = 1)]
-    public class Weight : ScriptableObject
+    [UnityEngine.CreateAssetMenu(fileName = "NewWeights", menuName = "Weights", order = 1)]
+    public class Weight : UnityEngine.ScriptableObject
     {
         public int dirtWeight;
         public int roadWeight;
