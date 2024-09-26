@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-
 //Esta clase no deberia existir en mi proyecto actual.
 //Va a ser reemplazada por la clase Agent.
 //El pathfinding va a ser igual para todos
 
 namespace FlyEngine
 {
+    /*
     public class Traveler<NodeType, CoordinateType> where NodeType : INode<CoordinateType>, INode, new() where CoordinateType : ICoordinate
     {
         
@@ -30,7 +26,7 @@ namespace FlyEngine
             
         }
 
-        /*
+        
         void Start()
         { 
             //Tengo que hacer que el nodo inicial y el final sean parte del grafo. Porque lo son xd
@@ -42,16 +38,17 @@ namespace FlyEngine
             //StartCoroutine(Move(path));
         }
         */
-        /*
-        public IEnumerator Move(List<Node<Vector2Coordinate>> path)
+    /*
+    public IEnumerator Move(List<Node<Vector2Coordinate>> path)
+    {
+        foreach (Node<Vector2Coordinate> node in path)
         {
-            foreach (Node<Vector2Coordinate> node in path)
-            {
-                transform.position = new Vector2Coordinate(node.GetCoordinate().x, node.GetCoordinate().y);
-                yield return new WaitForSeconds(1.0f);
-            }
+            transform.position = new Vector2Coordinate(node.GetCoordinate().x, node.GetCoordinate().y);
+            yield return new WaitForSeconds(1.0f);
         }
-        */
     }
+
+}
+*/
 
 }

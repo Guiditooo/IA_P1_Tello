@@ -8,8 +8,7 @@ public class Tile
     public Tile(TileType tileType, int gridX, int gridY, float screenX, float screenY)
     {
         this.tileType = tileType;
-        coord.gridPosX = gridX;
-        coord.gridPosY = gridY;
+        coord.SetGridPos(gridX, gridY);
         coord.x = screenX;
         coord.y = screenY;
     }

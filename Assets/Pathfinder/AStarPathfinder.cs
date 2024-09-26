@@ -1,21 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FlyEngine
 {
-    public class AStarPathfinder<NodeType, CoordinateType> : Pathfinder<NodeType, CoordinateType>
-        where NodeType : INode<CoordinateType>, INode, new()
-        where CoordinateType : ICoordinate
+    public class AStarPathfinder<NodeType, CoordinateType, T> : Pathfinder<NodeType, CoordinateType, T>
+        where NodeType : INode<CoordinateType, T>, INode, new()
+        where CoordinateType : ICoordinate<T>, IGrid, new()
     {
 
-        public AStarPathfinder(Grapf<NodeType, CoordinateType> grapf) 
+        public AStarPathfinder(Grapf<NodeType, CoordinateType, T> grapf)
         {
             actualGrapf = grapf;
         }
         protected override float Distance(NodeType A, NodeType B)
         {
-            CoordinateType coordA = A.GetCoordinate();
-            CoordinateType coordB = B.GetCoordinate();
-            return coordA.DistanceTo(coordB); // Usa el método de la interfaz ICoordinate
+            T[] aValues = A.GetCoordinate().GetValues();
+            T[] bValues = B.GetCoordinate().GetValues();
+
+            float distance = default;
+
+            if (aValues.Length != bValues.Length)
+            {
+                MessageDebugger.ShowMessage("No hay igual cantidad de parametros en el nodo A y B.");
+                return -1.0f;
+            }
+
+            for (int i = 0; i < aValues.Length; i++)
+            {
+                float valueB = Convert.ToSingle(bValues[i]);
+                float valueA = Convert.ToSingle(aValues[i]);
+
+                distance += Math.Abs(valueB - valueA);
+            }
+            return distance;
         }
 
         // Método para obtener los vecinos de un nodo

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using FlyEngine;
 
 public class ECSExample_ECSWhitGOs : MonoBehaviour
 {
@@ -11,13 +12,11 @@ public class ECSExample_ECSWhitGOs : MonoBehaviour
 
     void Start()
     {
-        ECSManager.Init();
         entities = new Dictionary<uint, GameObject>();
         for (int i = 0; i < entityCount; i++)
         {
             uint entityID = ECSManager.CreateEntity();
-            ECSManager.AddComponent<PositionComponent>(entityID,
-                new PositionComponent(0, -i, 0));
+            ECSManager.AddComponent<PositionComponent>(entityID,new PositionComponent(0, -i, 0));
             ECSManager.AddComponent<VelocityComponent>(entityID,
                 new VelocityComponent(velocity, Vector3.right.x, Vector3.right.y, Vector3.right.z));
             entities.Add(entityID, Instantiate(prefab, new Vector3(0, -i, 0), Quaternion.identity));

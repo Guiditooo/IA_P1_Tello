@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using FlyEngine;
 
 public class ECSExample_ECSWhitoutGOs : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class ECSExample_ECSWhitoutGOs : MonoBehaviour
 
     void Start()
     {
-        ECSManager.Init();
         entities = new List<uint>();
         for (int i = 0; i < entityCount; i++)
         {

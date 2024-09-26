@@ -3,9 +3,9 @@ using System.Collections.Generic;
 namespace FlyEngine
 {
 
-    public abstract class Pathfinder<NodeType, CoordinateType> where NodeType : INode<CoordinateType>, INode, new() where CoordinateType : ICoordinate
+    public abstract class Pathfinder<NodeType, CoordinateType, T> where NodeType : INode<CoordinateType, T>, INode, new() where CoordinateType : ICoordinate<T>, IGrid, new()
     {
-        protected Grapf<NodeType, CoordinateType> actualGrapf;
+        protected Grapf<NodeType, CoordinateType, T> actualGrapf;
 
         public List<NodeType> FindPath(NodeType startNode, NodeType destinationNode)
         {
@@ -25,7 +25,7 @@ namespace FlyEngine
             List<NodeType> closedList = new List<NodeType>();
 
             // Inicializar el nodo de inicio con costo acumulado 0 y calcular la heurística inicial
-            nodes[startNode] = (default, 0, startNode.GetCoordinate().DistanceTo(destinationNode.GetCoordinate()));
+            nodes[startNode] = (default, 0, Distance(startNode, destinationNode));
 
             // Bucle principal del algoritmo A*
             while (openList.Count > 0)
@@ -70,7 +70,7 @@ namespace FlyEngine
                     if (!openList.Contains(neighbor) || tentativeAcumulativeCost < nodes[neighbor].AcumulativeCost)
                     {
                         // Actualizar el nodo vecino con el nuevo padre, costo acumulado y heurística
-                        nodes[neighbor] = (currentNode, tentativeAcumulativeCost, neighbor.GetCoordinate().DistanceTo(destinationNode.GetCoordinate()));
+                        nodes[neighbor] = (currentNode, tentativeAcumulativeCost, Distance(neighbor, destinationNode));
 
                         // Si el vecino no está en la lista abierta, lo añadimos
                         if (!openList.Contains(neighbor))
@@ -103,7 +103,7 @@ namespace FlyEngine
             }
         }
 
-        public void UpdateGrapf(Grapf<NodeType, CoordinateType> newGrapf)
+        public void UpdateGrapf(Grapf<NodeType, CoordinateType, T> newGrapf)
         {
             actualGrapf = newGrapf;
         }

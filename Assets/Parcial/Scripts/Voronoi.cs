@@ -28,7 +28,7 @@ namespace FlyEngine
             if (nodeList == null || nodeList.Count == 0)
                 throw new ArgumentException("La lista de nodeList no puede estar vacía.");
 
-            Vector2Coordinate nearby = nodeList.OrderBy(n => n.DistanceTo(node)).First();
+            Vector2Coordinate nearby = nodeList.OrderBy(n => Vector2Coordinate.Distance(node,n)).First();
 
             return nearby;
         }

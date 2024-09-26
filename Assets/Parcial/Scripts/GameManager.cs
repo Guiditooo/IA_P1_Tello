@@ -1,5 +1,3 @@
-using FlyEngine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace FlyEngine
@@ -17,6 +15,7 @@ namespace FlyEngine
 
         private void Awake()
         {
+            ECSManager.Init();
             viewer = GetComponent<GrapfView>();
             map = GetComponent<MapManager>();
         }
@@ -28,8 +27,8 @@ namespace FlyEngine
             nodeCount.y = (int)(mapHeight / nodeSeparation) + 1;
 
             Vector2 tileSize = new Vector2();
-            tileSize.x = mapWidth / nodeCount.x;
-            tileSize.y = mapHeight / nodeCount.y;
+            tileSize.x = mapWidth / (nodeCount.x - 1);
+            tileSize.y = mapHeight / (nodeCount.y - 1);
 
             if (viewer != null)
             {
@@ -65,6 +64,8 @@ namespace FlyEngine
         public static void SetMapWidth(float newMapWidth) => mapWidth = newMapWidth;
         public static void SetMapHeight(float newMapHeight) => mapHeight = newMapHeight;
         public static void SetNodeSeparation(float newNodeSeparation) => nodeSeparation = newNodeSeparation;
+
+
     }
 
 }

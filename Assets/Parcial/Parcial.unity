@@ -1117,15 +1117,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461996356}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ba3e0286d91096448c268e79f7fdba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   caravanPrefab: {fileID: 5306086445769470457, guid: 94e3f095abd68ed4b8383e970520febc, type: 3}
   villagerPrefab: {fileID: 5306086445769470457, guid: 01f74685371bf6a4580868ee5c4a74ff, type: 3}
-  initialCaravanCount: 1
-  initialVillagerCount: 5
+  initialCaravanCount: 100
+  initialVillagerCount: 400
   caravanVelocity: 0.1
   villagerVelocity: 0.2
 --- !u!114 &461996359
@@ -1559,7 +1559,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

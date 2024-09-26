@@ -1,6 +1,6 @@
 ﻿namespace FlyEngine
 {
-    public class Node<CoordType> : INode, INode<CoordType> where CoordType : ICoordinate
+    public class Node<CoordType, T> : INode, INode<CoordType, T> where CoordType : ICoordinate<T>
     {
         private CoordType coordinate;
         private bool isBlocked;

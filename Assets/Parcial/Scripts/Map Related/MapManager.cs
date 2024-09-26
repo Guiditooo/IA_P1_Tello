@@ -1,9 +1,6 @@
-using FlyEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 namespace FlyEngine
 {
@@ -34,8 +31,6 @@ namespace FlyEngine
 
         void Start()
         {
-            // Iniciar el sistema ECS si es necesario
-            ECSManager.Init();
             tileEntities = new List<uint>();
 
             // Inicializar el diccionario de sprites para los diferentes tipos de tile
@@ -80,6 +75,9 @@ namespace FlyEngine
 
             tileScale = new Vector3(tileWidth, tileHeight, 1.0f);
             //tileScale = new Vector3(tileWidth / width, tileHeight / height, 1.0f);
+
+            mapWidth = width - 1;//Es la correccion a la cantidad de nodos
+            mapHeight = height - 1;
 
             for (int x = 0; x < width; x++)
             {
@@ -232,18 +230,29 @@ namespace FlyEngine
             return new Color(color.r, color.g, color.b, color.a);
         }
 
-        /*void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             if (!createdMap) return;
-
+            /*
             foreach (var entityID in tileEntities)
             {
                 PositionComponent pos = ECSManager.GetComponent<PositionComponent>(entityID);
                 Gizmos.color = Color.red; // Cambia el color si lo deseas
                 Gizmos.DrawCube(new Vector3(pos.X, pos.Y, 0), new Vector3(tileScale.x, tileScale.y, 0.1f));
             }
+            */
+            Gizmos.color = Color.magenta; // Cambia el color si lo
+            Vector3[] corners = new Vector3[4];
+            corners[0] = new Vector3(0, mapHeight, 0);
+            corners[1] = new Vector3(mapWidth, mapHeight, 0);
+            corners[2] = new Vector3(mapWidth, 0, 0);
+            corners[3] = new Vector3(0, 0, 0);
+
+
+            //Gizmos.DrawCube(new Vector3(mapWidth / 2, mapHeight / 2, 0), new Vector3(mapWidth, mapHeight, 0.1f));
+            System.Span<Vector3> vectors = new System.Span<Vector3>(corners);
+            Gizmos.DrawLineStrip(vectors, true);
         }
-        */
     }
 
 }
